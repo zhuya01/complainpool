@@ -1,0 +1,70 @@
+
+.title{
+    text-align: center;
+}
+.abstract{
+    display: inline-block;
+    width: 95%;
+    overflow: hidden;
+    word-break: break-word;
+    height: 40px;
+    text-overflow:ellipsis;
+    margin-bottom: 0;
+}
+.action{
+    line-height: 120px;
+    font-size: 15px;
+}
+.clear{
+    clear: both;
+}
+.header{
+    background: white;
+    height: 160px;
+    overflow: hidden;
+}
+.contentArea{
+    margin: 0px auto;
+    overflow: hidden;
+    width: 95%;
+}
+.imageUpload{
+    float: left;
+    position: relative;
+    top: 2px;
+}
+.imageUpload :global(.ant-upload.ant-upload-select-picture-card){
+    margin:0 0 0 0;
+    height: 130px;
+    width: 125px;
+}
+.imageUpload:global(.ant-upload-list-picture-card .ant-upload-list-item:hover, .ant-upload-list-picture .ant-upload-list-item:hover){
+    height: 130px;
+    width: 125px;
+}
+.header_right{
+    width: 87%;
+    float: left;
+    display: inline-block;
+    overflow: hidden;
+}
+.header_right textarea{
+    height: 74px;
+}
+.status{
+    background: white;
+}
+.richText{
+    background: white;
+    overflow: hidden;
+    
+}
+.richTextContentArea{
+    background: white;
+    overflow: hidden;
+    height: 510px;
+    margin-bottom: 15px;
+}
+.btn{
+    margin-left: auto;
+}

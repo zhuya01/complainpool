@@ -1,0 +1,30 @@
+.content{
+    width: 100%;
+    background: white;
+    padding-left: 15px;
+    padding-top: 15px;
+    padding-bottom: 15px;
+}
+
+.cancel_btn{
+    background: #a6a6a6;
+    border: #a6a6a6;
+    margin-left: 25px;
+    width: 70px;
+}
+.confirm_btn{
+    width: 70px;
+}
+.createOrderForm_endTime_css .ant-picker-input>input:hover{
+   border: none!important;
+}
+.createOrderForm_endTime_css .ant-picker-input>input{
+    border: none!important;
+}
+.createOrderForm_sponsor_css .ant-select-selection-search-input:hover{
+    border: none!important;
+}
+.createOrderForm_sponsor_css .ant-select-selection-search-input{
+    border: none!important;
+}
+

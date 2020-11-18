@@ -1,0 +1,30 @@
+
+.title{
+    font-size: 18px;
+    font-weight:100;
+}
+.abstract{
+    display: inline-block;
+    width: 95%;
+    overflow: hidden;
+    word-break: break-word;
+    height: 40px;
+    text-overflow:ellipsis;
+    margin-bottom: 0;
+}
+.action{
+    line-height: 120px;
+    font-size: 15px;
+}
+.content{
+
+}
+.list-layout{
+    position: relative;
+    background: url(/app/web/commander/media/list_bg.8619e8b9.png) no-repeat;
+    background-size: cover;
+    padding-left: 20px;
+    margin-bottom: 20px;
+    box-shadow: 5px 5px 5px lightgrey;
+    box-shadow: 10px 10px 5px #888888;
+}

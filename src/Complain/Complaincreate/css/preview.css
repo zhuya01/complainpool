@@ -1,0 +1,21 @@
+.newsxqnr{
+    font-size: 16px;
+    line-height: 32px;
+    width: 92%;
+    margin: 20px auto;
+    text-indent: 40px;
+}
+.newslistnr{
+    margin: 5px 0px;
+    height: 80px;
+    line-height: 26px;
+    overflow: hidden;
+    font-size: 16px;
+}
+.bg{
+    height: 300px;
+    width: 580px;
+    background-size: contain;
+    background: url("../../../Demo/asseets/n3.jpg") no-repeat;
+    margin: 0px auto;
+}

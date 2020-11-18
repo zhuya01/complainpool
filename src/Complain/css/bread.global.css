@@ -1,0 +1,9 @@
+.head_bread{
+    width: 100%;
+    background: white;
+    height: 40px;
+    line-height: 40px;
+    padding-left: 15px;
+    font-size: 15px;
+    margin-bottom: 15px;
+}

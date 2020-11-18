@@ -1,0 +1,12 @@
+.zljs{ width:100%; margin:20px 0px; background:#ffffff; border-radius:6px;}
+.zljs .zljs_tit{ padding:20px 36px; font-size:20px; font-weight:bold; margin-bottom:22px; }
+.zljs .zljs_tit1{float:left;}
+.zljs .zljs_cj{ }
+.zljs .zljs_tit a{ display:block; width:30px; height:30px; float:left; margin:0px 20px;}
+.zljs .zljs_tit a:hover{ transition:all ease-in 0.1s; -webkit-transition:all ease-in 0.1s;}
+.zljs .border{ width:98%; margin:16px 18px; border-top:1px solid #cccccc; }
+.zljsnr{min-height: 700px;}
+.clearfix{clear: both;}
+.newsxqbt{ margin:20px 0px 9px 0px; font-size:30px; font-weight:bold; text-align:center; padding:40px 0px 0px 0px;}
+.newsxqrq .riqi{ margin-left:40px;}
+.newsxqnr{  line-height:26px; width:92%; margin:20px auto; text-indent:40px;}
