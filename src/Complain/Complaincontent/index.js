@@ -77,7 +77,6 @@ export default function Page(props) {
         //环境设置
         environment={session.environment}
         //查询语句
-        
         query={query}
         variables={{
             id:io
