@@ -361,7 +361,6 @@ function Detail(props) {
                               <List.Item
                               >
                                   <div className={indexCss.comment}>
-                                  
                                               <Row>
                                                 <Col className={indexCss.commenter}>
                                                   <span style={{fontWeight:"bold"}}>{item.user.name}:</span>
