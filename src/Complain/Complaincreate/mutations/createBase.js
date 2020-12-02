@@ -1,20 +1,22 @@
 import {graphql, commitMutation} from 'react-relay';
 
 const mutation = graphql`
-mutation createBase_Mutation(
-  $content: String!, 
-  $title: String!) {
-  createComplainPool(
-    content: $content, 
-    title: $title) {
+mutation createBase_Mutation($content: String!, $title: String!, $annex: [complainFileInput]) {
+  createComplainPool(content: $content, title: $title, annex: $annex) {
     content
     createdAt
     deletedAt
-    id
     title
     updatedAt
+    userId
+    id
+    annexCreate {
+      name
+      url
+    }
   }
 }
+
 
 `;
 
@@ -29,10 +31,9 @@ export default function createBase(
             onCompleted: onCompleted,
             onError: onError,
             variables: {
-                "complainContentType":formInfo.complainContentType,
-                "complainId":formInfo.complainId,
                 "content":formInfo.content,
-                "title":formInfo.title
+                "title":formInfo.title,
+                "annex":formInfo.annex
             },
         }
     );

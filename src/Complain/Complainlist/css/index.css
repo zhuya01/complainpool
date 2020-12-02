@@ -1,10 +1,4 @@
-
-.title{
-    font-size: 18px;
-    font-weight:100;
-}
 .abstract{
-    display: inline-block;
     width: 95%;
     overflow: hidden;
     word-break: break-word;
@@ -16,15 +10,85 @@
     line-height: 120px;
     font-size: 15px;
 }
-.content{
-
+.head_bread{
+    font-size: 18px;
+    margin: 17px 20px 15px 30px;
+    background-color: white;
 }
-.list-layout{
-    position: relative;
-    background: url(/app/web/commander/media/list_bg.8619e8b9.png) no-repeat;
-    background-size: cover;
+.list{
+    background-color:white;
+    
+}
+.id{
+    margin: 20px 10px 30px 800px;
+}
+.row{
+    margin: 0px 10px 0px 35px;
     padding-left: 20px;
     margin-bottom: 20px;
     box-shadow: 5px 5px 5px lightgrey;
-    box-shadow: 10px 10px 5px #888888;
+}
+.button{
+    color:black;
+    margin: 20px 0px 0px 0px;
+}
+.ct{
+    margin: 20px 0px 0px 0px;
+padding: 16px 26px 6px ;
+font-size: 20px;
+font-weight: bold;
+background-color: white;
+color: black;
+}
+.new{
+    color: black;
+    font-size: 20px;
+    font-weight: bold;
+    
+}
+.b{
+    margin: 1px 0px 3px 0px;
+    font-size: 16px;
+}
+.tab{
+    font-size: 18px;
+    font-weight: bold;
+   }
+.body{
+    margin-top: -28px;
+    
+}
+
+.orderReceive_head_addSpan{
+    background: url(../../../img//cj.a3bf64fc.png);
+    height: 30px;
+    width: 30px;
+    margin: 0px 0px 0px 10px;
+}
+.content{
+    margin:0px 0px 0px -20px;
+}
+.content1{
+    margin: 0px 0px 0px -20px;
+}
+#time{
+    padding: 0px 60px 0px 38px;
+}
+#name{
+    font-size: 14px;
+    color: #555555;
+}
+#title{
+    font-size: 16px;
+    padding: 26px 0px 14px 0px;
+}
+.image{
+   margin-left: 20px;
+   color: #555555;
+}
+#images{
+    width: 248px;
+    height: 127px;
+    margin: 13px 20px 18px 0px;
+    border:1px solid #555555;
 }

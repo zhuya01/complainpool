@@ -26,7 +26,8 @@ export default function App(props) {
                 <Editor
                     initialValue={content}
                     init={{
-                        height: 300,
+                        height: 400,
+                        width:1027.5,
                         min_height:300,
                         menubar: '',
                         language: 'zh_CN',

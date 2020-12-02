@@ -7,10 +7,10 @@
     overflow: hidden;
 }
 .contentArea{
-    margin: 10px auto;
     overflow: hidden;
-    width: 95%;
-    font-size: 16px;
+    margin: 0px 0px 20px 0px;
+    font-size: 17px;
+    background: white;
 }
 .imageUpload{
     float: left;
@@ -28,37 +28,65 @@
 }
 .header_right{
     width: 87%;
-    float: left;
     display: inline-block;
     overflow: hidden;
-    margin:35px 0px 0px 0px ;
-    
 }
 .header_right textarea{
     height: 74px;
+    background: white;
 }
 .status{
     background: white;
 }
 .richText{
-    background: white;
-    overflow: hidden;
-    
+    font-size: 17px;
+    width: auto;
 }
 .richTextContentArea{
     background: white;
     overflow: hidden;
     height: 510px;
-    width: 1150px;
-    margin-bottom: 15px;
+    margin-bottom:18px;
+    font-size: 18px;
 }
-.btn{ width: 200px;                                        
-    height: 30px;
-    background: #ccc;
-    border: 1px solid #eee;
-    border-radius: 15px;                
-   }
 .head_bread{
-    font-size: 14px;
-    font-weight:100;
+    font-size: 18px;
+    margin: 16px 0px 16px 40px;
+    
+}
+.text{
+    margin: 50px 0px 0px 30px;
+    
+    
+}
+.text1{
+    margin: 0px 0px 0px 30px;
+}
+.input{
+        width:1027.5px;
+        height:40px;
+        color: rgba(0,0,0,.85);
+        border-radius: 8px;
+        text-overflow: ellipsis;
+}
+.ct{
+    margin: 0px 0px 0px 330px;
+}
+.annex{
+    text-align:left;
+    margin: 0px 0px 0px 30px;
+}
+
+.d{
+    margin: 0px 0px 20px 0px;
+    background-color: white;
+}
+.bt1{
+    height: 40px !important;
+    border-radius: 8px;
+    margin: 0px 0px 20px 97px;
+    padding: 0px 40px 0px 40px;
+}
+.image{
+    padding: 0px 0px 0px 40px;
 }

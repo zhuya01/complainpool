@@ -1,13 +1,20 @@
-html,body{
-    height: 100%;
-    width: 100%;
-    min-width:1000px;
-}
-*{
+/*初始化样式*/
+* {
     margin: 0;
     padding: 0;
 }
-/*去除tinyMce提示*/
-.tox-notifications-container{
-    display: none;
+html,body{
+    width: 100%;
+    height: 100%;
+    min-width:992px;
+    max-width: 1920px;
+    background:#f0f2f5;
+}
+
+/*整体变更*/
+.ant-layout-content{
+    background: #f0f2f5 !important;
+}
+.ant-layout{
+    padding: 0px !important;
 }
