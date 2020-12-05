@@ -84,8 +84,13 @@
 .bt1{
     height: 40px !important;
     border-radius: 8px;
-    margin: 0px 0px 20px 97px;
+    padding: 0px 20px 0px 20px;
+}
+.bt2{
+    height: 40px !important;
+    border-radius: 8px;
     padding: 0px 40px 0px 40px;
+    margin: 0px 0px 20px 0px;
 }
 .image{
     padding: 0px 0px 0px 40px;

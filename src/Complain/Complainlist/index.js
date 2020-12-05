@@ -3,7 +3,7 @@ import React, {useContext, useState} from 'react'
 import {Link} from 'react-router-dom'
 import {SessionContext} from 'funweb-lib';
 //antd
-import {List, Row, Col,Breadcrumb,Layout,Tabs} from 'antd';
+import {List, Row, Col,Breadcrumb,Layout,Tabs,Empty} from 'antd';
 import {CommentOutlined} from '@ant-design/icons';
 //css
 import indexCss from './css/index.css'
@@ -26,7 +26,7 @@ query Complainlist_Query($first: Int, $order: String, $skip: Int) {
             name
             id
           }
-          annexCreate {
+          annex{
             name
             url
           }
@@ -75,38 +75,40 @@ export default function () {
                 )
             }
             }
-            
         }
-        
     />);
-
-    
 }
 
 function Page(props) {
+    const session = useContext(SessionContext);
     let cmssData =[];
     if (props&&props.complainpool){
        
         cmssData = props.complainpool.complainPoolQueryList.edges;
         console.log(props.complainpool.complainPoolQueryList.edges);
     }
-    let countData =[];
-    if (props&&props.complainpool){
-       
-        countData = props.complainpool.complainPoolQueryList
-        console.log(props.complainpool.complainPoolQueryList);
-    }
-    
     let viewData =[];
     if (props&&props.viewer){
        
         viewData = props.viewer;
         console.log(viewData);
     }
+    let myData =[];
+    for (let i = 0; i < cmssData.length; i++) {
+        console.log(cmssData[i])
+        if(cmssData[i].user.id===session.user.id){
+            myData[i]=cmssData[i];
+        }
+    }
+    console.log(myData)
     cmssData.sort(function(a,b){
         return a.time < b.time ? 1 : -1
-        })
+        })  
+    myData.sort(function(a,b){
+        return a.time < b.time ? 1 : -1
+        })           
     return (
+        
         <>
                 <Layout style={{backgroundColor:"white"}}>
                         <Breadcrumb  className={indexCss.head_bread} separator="" >
@@ -147,7 +149,6 @@ function Page(props) {
                   }}
                 dataSource={cmssData}
                 renderItem={item => {
-                    console.log(item)
                     return (
                         <List.Item
                         >
@@ -178,15 +179,13 @@ function Page(props) {
                                 <Row span={24}>
                                     <Col >
                                         {
-                                            item.annexCreate.map((image)=>{
+                                            item.annex.map((image)=>{
                                                 console.log(image)
                                                 return(
                                                     <img id={indexCss.images} src={'/storage/' + image.url}/>
                                                 )
                                             })
-                                            
                                         }
-                                        
                                     </Col>
                                 </Row>
                             </div>  
@@ -198,8 +197,9 @@ function Page(props) {
                 }
             />
             </TabPane>
+            
             <TabPane tab={<span className={indexCss.tab}>我发布的文章</span>} key="2">
-
+                
             <List
                 pagination={{
                     responsive:false,
@@ -208,32 +208,30 @@ function Page(props) {
                     },
                     pageSize: 10,
                   }}
-                dataSource={cmssData}
-                renderItem={item => {
-                    if(viewData.user&&item.user&&viewData.user.id===item.user.id){
+                dataSource={myData}
+                renderItem={item1 => {
                         return (
-                            <List.Item
-                            >
+                            <List.Item>
                                 <div className={indexCss.body}>
                                     <Row span={24}>
                                         <Col id={indexCss.title}>
-                                            <Link to={{pathname: `/complain.Complain/Content/`,search: `?id=${item.id}`,}}>
-                                                <span style={{color:"#555555",fontWeight:"bold"}}>{item.title}</span>
+                                            <Link to={{pathname: `/complain.Complain/Content/`,search: `?id=${item1.id}`,}}>
+                                                <span style={{color:"#555555",fontWeight:"bold"}}>{item1.title}</span>
                                             </Link>
                                         </Col>     
                                     </Row>
                                     <Row span={24}>
                                         <Col id={indexCss.name}>
-                                            <span>发布人：{item.user?item.user.name:''}</span>
+                                            <span>发布人：{item1.user?item1.user.name:''}</span>
                                         </Col>    
                                         <Col id={indexCss.time}>
-                                            <span>发布时间：{moment(item.createdAt).utc().add(8, 'hours').format('YYYY-MM-DD HH:mm')}</span>
+                                            <span>发布时间：{moment(item1.createdAt).utc().add(8, 'hours').format('YYYY-MM-DD HH:mm')}</span>
                                         </Col>
                                         <Col>
-                                            <Link to={{pathname: `/complain.Complain/Content/`,search: `?id=${item.id}`,}}>
+                                            <Link to={{pathname: `/complain.Complain/Content/`,search: `?id=${item1.id}`,}}>
                                                 <div className={indexCss.image}> 
                                                 <CommentOutlined/>
-                                                <span style={{marginLeft:"10px",color:"#black"}}>{item.count}</span>
+                                                <span style={{marginLeft:"10px",color:"#black"}}>{item1.count}</span>
                                                 </div>
                                                 
                                             </Link>
@@ -242,24 +240,21 @@ function Page(props) {
                                     <Row span={24}>
                                         <Col >
                                             {
-                                                item.annexCreate.map((image)=>{
+                                                item1.annex.map((image)=>{
                                                     console.log(image)
                                                     return(
                                                         <img id={indexCss.images} src={'/storage/' + image.url}/>
                                                     )
                                                 })
-                                                
                                             }
-                                            
                                         </Col>
                                     </Row>
-                                </div>  
+                                </div> 
                             </List.Item>
-                        
                         )
                     }
-                }}
-                
+                    //<Empty image={Empty.PRESENTED_IMAGE_SIMPLE} />
+                }
             />
             </TabPane>     
               </Tabs>
@@ -267,3 +262,4 @@ function Page(props) {
         </>
     )
 }
+

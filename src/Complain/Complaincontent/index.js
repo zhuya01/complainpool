@@ -15,7 +15,7 @@ import {ModalLink, SessionContext} from 'funweb-lib';
 import moment from 'moment'
 //mutation
 const query=graphql`
-query Complaincontent_Query($id: ID!,$complainId:ID!) {
+query Complaincontent_Query($id: ID!, $complainId: ID!) {
   complainpool {
     complainPoolQuery(id: $id) {
       content
@@ -38,8 +38,12 @@ query Complaincontent_Query($id: ID!,$complainId:ID!) {
         id
       }
       id
+      annex {
+        name
+        url
+      }
     }
-    commentQueryList(complainId:$complainId) {
+    commentQueryList(complainId: $complainId) {
       edges {
         commentContent
         fId
@@ -195,7 +199,7 @@ function Detail(props) {
     }
 
             const content = (
-              <div>
+              <div >
                           <Form
                             className={indexCss.form}
                             name="form_content"
@@ -310,6 +314,20 @@ function Detail(props) {
                               <div dangerouslySetInnerHTML={{__html: cmssData.content}}/>
                             </Col>
                       </Row>
+                      <Row>
+                        <Col >
+                          {
+                              cmssData.annex.map((image)=>{
+                                  console.log(image)
+                                  return(
+                                      <img id={indexCss.images} src={'/storage/' + image.url}/>
+                                  )
+                              })
+                              
+                          }
+                                            
+                        </Col>
+                      </Row>
                   </div>
 
                     <div className={indexCss.content}>
@@ -359,6 +377,7 @@ function Detail(props) {
                               return (
                                 
                               <List.Item
+                              id={indexCss.item}
                               >
                                   <div className={indexCss.comment}>
                                               <Row>
@@ -371,7 +390,7 @@ function Detail(props) {
                                                 <Col className={indexCss.commenttime}  >
                                                   <span>{moment(item.createdAt).utc().add(8, 'hours').format('YYYY-MM-DD HH:mm')}</span>
                                                       <span id={indexCss.link} style={{marginLeft:"620px"}}>
-                                                        <Popover content={content} trigger="click" onClick={()=>{clickto(item.id,item.topicId)}} >
+                                                        <Popover content={content} placement="bottomRight" trigger="click" onClick={()=>{clickto(item.id,item.topicId)}} >
                                                           <CommentOutlined/>
                                                         <span style={{marginLeft:"10px"}}>回复</span>
                                                         </Popover>
@@ -386,6 +405,7 @@ function Detail(props) {
                                                       if(item1.fId===parseInt(item.id.split("-")[1])){
                                                       return (
                                                       <List.Item
+                                                      id={indexCss.item1}
                                                       >
                                                           <div className={indexCss.fcomment} >
                                                                       <Row>
@@ -398,7 +418,7 @@ function Detail(props) {
                                                                         <Col className={indexCss.fcommenttime}>
                                                                           <span>{moment(item1.createdAt).utc().add(8, 'hours').format('YYYY-MM-DD HH:mm')}</span>
                                                                               <span id={indexCss.flink} style={{marginLeft:"580px"}}>
-                                                                              <Popover content={content} trigger="click" onClick={()=>{clickto(item1.id,item1.topicId)}}>
+                                                                              <Popover content={content} placement="bottomRight" trigger="click" onClick={()=>{clickto(item1.id,item1.topicId)}}>
                                                                                 <CommentOutlined/>
                                                                                 <span style={{marginLeft:"10px"}}>回复</span>
                                                                                 </Popover>
@@ -412,11 +432,12 @@ function Detail(props) {
                                                                           if(item2.fId===parseInt(item1.id.split("-")[1])){
                                                                           return (
                                                                           <List.Item
+                                                                          id={indexCss.item}
                                                                           >
                                                                               <div className={indexCss.fcomment} >
                                                                                           <Row>
                                                                                             <Col className={indexCss.fcommenter}>
-                                                                                                <span style={{fontWeight:"bold"}}>{item2.user.name}回复:{item1.user.name}</span>
+                                                                                                <span style={{fontWeight:"bold"}}>{item2.user.name}回复{item1.user.name}:</span>
                                                                                               <span>{item2.commentContent}</span>
                                                                                             </Col>
                                                                                           </Row>
@@ -424,7 +445,7 @@ function Detail(props) {
                                                                                             <Col className={indexCss.fcommenttime}>
                                                                                               <span>{moment(item2.createdAt).utc().add(8, 'hours').format('YYYY-MM-DD HH:mm')}</span>
                                                                                                   <span id={indexCss.flink} style={{marginLeft:"580px"}}>
-                                                                                                  <Popover content={content} trigger="click" onClick={()=>{clickto(item2.id,item2.topicId)}}>
+                                                                                                  <Popover content={content} placement="bottomRight" trigger="click" onClick={()=>{clickto(item2.id,item2.topicId)}}>
                                                                                                     <CommentOutlined/>
                                                                                                     <span style={{marginLeft:"10px"}}>回复</span>
                                                                                                     </Popover>
@@ -439,11 +460,12 @@ function Detail(props) {
                                                                                                 if(item3.fId===parseInt(item2.id.split("-")[1])){
                                                                                                 return (
                                                                                                 <List.Item
+                                                                                                id={indexCss.item}
                                                                                                 >
                                                                                                     <div className={indexCss.fcomment} >
                                                                                                                 <Row>
                                                                                                                   <Col className={indexCss.fcommenter}>
-                                                                                                                      <span style={{fontWeight:"bold"}}>{item3.user.name}回复:{item2.user.name}</span>
+                                                                                                                      <span style={{fontWeight:"bold"}}>{item3.user.name}回复{item2.user.name}:</span>
                                                                                                                     <span>{item3.commentContent}</span>
                                                                                                                   </Col>
                                                                                                                 </Row>
@@ -451,7 +473,7 @@ function Detail(props) {
                                                                                                                   <Col className={indexCss.fcommenttime}>
                                                                                                                     <span>{moment(item3.createdAt).utc().add(8, 'hours').format('YYYY-MM-DD HH:mm')}</span>
                                                                                                                         <span id={indexCss.flink} style={{marginLeft:"580px"}}>
-                                                                                                                        <Popover content={content} trigger="click" onClick={()=>{clickto(item3.id,item3.topicId)}}>
+                                                                                                                        <Popover content={content} placement="bottomRight" trigger="click" onClick={()=>{clickto(item3.id,item3.topicId)}}>
                                                                                                                           <CommentOutlined/>
                                                                                                                           <span style={{marginLeft:"10px"}}>回复</span>
                                                                                                                           </Popover>
@@ -466,11 +488,12 @@ function Detail(props) {
                                                                                                 if(item4.fId===parseInt(item3.id.split("-")[1])){
                                                                                                 return (
                                                                                                 <List.Item
+                                                                                                id={indexCss.item}
                                                                                                 >
                                                                                                     <div className={indexCss.fcomment} >
                                                                                                                 <Row>
                                                                                                                   <Col className={indexCss.fcommenter}>
-                                                                                                                      <span style={{fontWeight:"bold"}}>{item4.user.name}回复:{item3.user.name}</span>
+                                                                                                                      <span style={{fontWeight:"bold"}}>{item4.user.name}回复{item3.user.name}:</span>
                                                                                                                     <span>{item4.commentContent}</span>
                                                                                                                   </Col>
                                                                                                                 </Row>
@@ -478,7 +501,7 @@ function Detail(props) {
                                                                                                                   <Col className={indexCss.fcommenttime}>
                                                                                                                     <span>{moment(item4.createdAt).utc().add(8, 'hours').format('YYYY-MM-DD HH:mm')}</span>
                                                                                                                         <span id={indexCss.flink} style={{marginLeft:"580px"}}>
-                                                                                                                        <Popover content={content} trigger="click" onClick={()=>{clickto(item4.id,item4.topicId)}}>
+                                                                                                                        <Popover content={content} placement="bottomRight" trigger="click" onClick={()=>{clickto(item4.id,item4.topicId)}}>
                                                                                                                           <CommentOutlined/>
                                                                                                                           <span style={{marginLeft:"10px"}}>回复</span>
                                                                                                                           </Popover>
@@ -493,11 +516,12 @@ function Detail(props) {
                                                                                                 if(item5.fId===parseInt(item4.id.split("-")[1])){
                                                                                                 return (
                                                                                                 <List.Item
+                                                                                                id={indexCss.item}
                                                                                                 >
                                                                                                     <div className={indexCss.fcomment} >
                                                                                                                 <Row>
                                                                                                                   <Col className={indexCss.fcommenter}>
-                                                                                                                      <span style={{fontWeight:"bold"}}>{item5.user.name}回复:{item4.user.name}</span>
+                                                                                                                      <span style={{fontWeight:"bold"}}>{item5.user.name}回复{item4.user.name}:</span>
                                                                                                                     <span>{item5.commentContent}</span>
                                                                                                                   </Col>
                                                                                                                 </Row>
@@ -505,7 +529,7 @@ function Detail(props) {
                                                                                                                   <Col className={indexCss.fcommenttime}>
                                                                                                                     <span>{moment(item5.createdAt).utc().add(8, 'hours').format('YYYY-MM-DD HH:mm')}</span>
                                                                                                                         <span id={indexCss.flink} style={{marginLeft:"580px"}}>
-                                                                                                                        <Popover content={content} trigger="click" onClick={()=>{clickto(item5.id,item5.topicId)}}>
+                                                                                                                        <Popover content={content} placement="bottomRight" trigger="click" onClick={()=>{clickto(item5.id,item5.topicId)}}>
                                                                                                                           <CommentOutlined/>
                                                                                                                           <span style={{marginLeft:"10px"}}>回复</span>
                                                                                                                           </Popover>
@@ -518,19 +542,19 @@ function Detail(props) {
                                                                                             }}}
                                                                                           />
                                                                       </Row>
-                                                                                                                </Row>
-                                                                                                    </div>
-                                                                                                </List.Item>
-                                                                                              )
-                                                                                            }}}
-                                                                                          />
-                                                                      </Row>
-                                                                                                                </Row>
-                                                                                                    </div>
-                                                                                                </List.Item>
-                                                                                              )
-                                                                                            }}}
-                                                                                          />
+                                                                    </Row>
+                                                                  </div>
+                                                                </List.Item>
+                                                              )
+                                                            }}}
+                                                          />
+                                                        </Row>
+                                                      </Row>
+                                                    </div>
+                                                  </List.Item>
+                                                )
+                                              }}}
+                                            />
                                                                       </Row>
                                                                                           </Row>
                                                                               </div>

@@ -10,7 +10,7 @@ mutation updateBase_Mutation($content: String!, $title: String!, $annex: [compla
     updatedAt
     userId
     id
-    annexCreate {
+    annex {
       name
       url
     }

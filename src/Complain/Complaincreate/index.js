@@ -25,7 +25,7 @@ mutation Complaincreate_Mutation($content: String!, $title: String!, $annex: [co
       updatedAt
       userId
       id
-      annexCreate {
+      annex {
         name
         url
       }
@@ -81,9 +81,9 @@ export default function Page(props) {
 
             }
             if (info.file.status === 'done') {
-                message.success(`${info.file.name} 图片上传成功`);
+                message.success(`${info.file.name} 附件上传成功`);
             } else if (info.file.status === 'error') {
-                message.error(`${info.file.name} 图片上传失败`);
+                message.error(`${info.file.name} 附件上传失败`);
             }
         },
     };
@@ -122,8 +122,8 @@ export default function Page(props) {
     const onFinish = (formInfo) => {
         console.log(formInfo)
         //附件格式化
-        if(formInfo.annexCreate){
-            formInfo.annexCreate=formInfo.annexCreate.map(val=>{
+        if(formInfo.annex){
+            formInfo.annex=formInfo.annex.map(val=>{
                 if(val.response)
                     return{
                         url:val.url,
@@ -137,7 +137,7 @@ export default function Page(props) {
             })
         }
         else {
-            formInfo.annexCreate=[]
+            formInfo.annex=[]
         }
         
         if(id){
@@ -191,7 +191,7 @@ export default function Page(props) {
                 initialValues={{remember: true}}
                 onFinish={onFinish}
                 labelAlign={'center'}
-                wrapperCol={{span: 16}}
+                wrapperCol={{span: 24}}
             >
                 <Layout>
                 <div className={indexCss.d}>
@@ -229,46 +229,50 @@ export default function Page(props) {
                                 <Form.Item
                                     label="吐槽池内容"
                                     name="content"
-                                    labelCol={{span: 100}}
                                     wrapperCol={{span:10,offset:3}}
-                                    rules={[{required: true, message: ' '}, {validator: richTextCheck}]}
+                                    rules={[{required: true, message: '请输入吐槽池内容'}]}
                                 >
                                     <RichText onChange={(e) => {}} placeholer={'请输入吐槽池内容'}/>
                                 </Form.Item>
                             </Col>
                         </Row >
-                        <Row>
-                            <Col className={indexCss.image}>
-                            <Form.Item
-                                            label="上传图片"
+                        <div span={24}>
+                            <Row className={indexCss.image}>
+                                <Col span={18}>
+                                <Form.Item
+                                            label="上传附件"
                                             name="annex"
                                             valuePropName="file"
-                                            labelCol={{span:4}}
-                                            wrapperCol={{span:6,offset:6}}
                                             rules={[{required:false}]}
+                                            labelCol={{span: 0, offset: 0}}
+                                            wrapperCol={{span: 0,offset:3}}
                                             getValueFromEvent={(e) => {
                                                 return e && e.fileList && e.fileList.filter((value => value.status === 'done')).map(value => {
                                                     return {url: value.response.singleUpload.hash, name: value.originFileObj.name}
                                                 })
                                             }}
                                         >
-                                            <Upload  {...uploadprops} >
+                                            <Upload {...uploadprops} >
                                                     <Button className={indexCss.bt1}>
-                                                        上传图片
+                                                        上传附件
                                                     </Button>
                                             </Upload>
                                         </Form.Item>
-                            </Col>
+                                </Col>
+                                <Col span={8}>
+                                
+                                </Col>
                         </Row>
+                        </div>
                         <Row>
                                 <Col span={2} offset={6}>
-                                    <Button className={indexCss.bt1} type="primary" htmlType="submit">
+                                    <Button className={indexCss.bt2} type="primary" htmlType="submit">
                                         发送
                                     </Button>
                                 </Col>
                                 <Col span={2} offset={4}>
                                     <Link to='/complain.Complain/List'>
-                                        <Button className={indexCss.bt1}>
+                                        <Button className={indexCss.bt2}>
                                             返回
                                         </Button>
                                     </Link>
